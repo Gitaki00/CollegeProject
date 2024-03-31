@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/about.css' %}">
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" >
+    <script src="{% static 'js/bundle.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/1b99dd44bf.js" crossorigin="anonymous"></script>
+
+</head>
+<body class="background_image" style="background-image:url({% static 'images/new.jpg' %})">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" xmlns="http://www.w3.org/1999/html">
+  <div class="container-fluid">
+
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+          <a class="nav-link" href="{% url 'app2:logout' %}">logout</a>
+        </li>
+        {% endif %}
+ <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+        Department
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li class="dropdown-submenu">
+            <a class="dropdown-item " href="#">COMPUTER SCIENCE<i class="fas fa-caret-right"></i></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Bachelor_of_Science_in_Information_Technology">BCA</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Bachelor_of_Computer_Science">BSC CS</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="dropdown-item " href="#">COMMERCE<i class="fas fa-caret-right"></i></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Bachelor_of_Commerce">BCOM</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Bachelor_of_Business_Administration">BBA</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="dropdown-item " href="#">ENGLISH<i class="fas fa-caret-right"></i></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Bachelor_of_Arts">BA En</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Master_of_Arts">MA En</a></li>
+            </ul>
+        </li>
+        <li class="dropdown-submenu">
+            <a class="dropdown-item " href="#">HOTEL MANAGEMENT <i class="fas fa-caret-right"></i></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Hotel_Management">BSC HM</a></li>
+            </ul>
+        </li>
+
+        <li class="dropdown-submenu">
+            <a class="dropdown-item " href="#">SOCIAL STUDIES<i class="fas fa-caret-right"></i></a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Psychology">BSC PSYCHOLOGY</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Sociology">BSC SOCIOLOGY</a></li>
+            </ul>
+        </li>
+
+    </ul>
+</li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="" ></a>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+{% if user.is_authenticated %}
+<h2 style="text-align:center;text-transform:uppercase;">
+    <a><b>Helo {{user.username}}</b></a>
+</h2>
+{% endif %}
+</div>
+<div class="container">
+    <div class="row">
+        <center>
+        <div class="center-card" style="padding:200px">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">ST.Xaviers College</h5>
+                <p class="card-text">Application Form</p>
+                    <a href="{% url 'app3:form' %}" class="btn btn-primary">Apply Here</a>
+                </div>
+                </div>
+        </div>
+            </center>
+    </div>
+</div>
+</body>
+</html>

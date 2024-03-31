@@ -1,0 +1,36 @@
+from django.contrib import messages
+from django.shortcuts import redirect, render, get_object_or_404
+
+from app3.models import Course, FormData
+
+def form(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        dob = request.POST.get('dob')
+        age = request.POST.get('age')
+        gender = request.POST.get('gender')
+        phno = request.POST.get('phno')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        course_id = request.POST.get('course')
+        purpose = request.POST.get('purpose')
+        materials = request.POST.getlist('material')
+        course_instance = get_object_or_404(Course, pk=course_id)
+
+        form_data = FormData(
+            name=name,
+            dob=dob,
+            age=age,
+            gender=gender,
+            phno=phno,
+            email=email,
+            address=address,
+            course=course_instance,
+            purpose=purpose,
+        )
+        form_data.save()
+
+        messages.success(request, 'Form submitted successfully!')
+        return redirect('app3:form')
+    else:
+        return render(request, 'form.html')
