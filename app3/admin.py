@@ -2,7 +2,11 @@ from django.contrib import admin
 from .models import FormData,Course
 # Register your models here.
 from django.contrib import admin
-from .models import Course, FormData
+from .models import Course, FormData,Department
+
+class DepartmentAdmin(admin.ModelAdmin):
+    list_display = ['name']
+admin.site.register(Department,DepartmentAdmin)
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['name']

@@ -42,74 +42,24 @@
         <textarea class="form-control" name="address" id="address" placeholder="ADDRESS" rows="3"></textarea>
     </div>
 
-      <div class="nav-item dropdown form-group">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true" style="color:white;font-size:180%"><b>
-        Department</b>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <li class="dropdown-submenu">
-            <a class="dropdown-item " href="#">COMPUTER SCIENCE<i class="fas fa-caret-right"></i></a>
-            <ul class="dropdown-menu">
-                <li>
-                <select class="custom-select mr-sm-2 course-select" id="inlineFormCustomSelect1"  name="course">
-                <option value="1"> <li>BCA</li></option>
-                <option value="6"> <li>BSC CS</li></option>
-                 </select>
-                </li>
-            </ul>
-        </li>
-        <label class="dropdown-submenu">
-            <a class="dropdown-item " href="#">COMMERCE<i class="fas fa-caret-right"></i></a>
-           <ul class="dropdown-menu">
-               <li>
-                <select class="custom-select mr-sm-2 course-select" id="inlineFormCustomSelect2" name="course">
-                <option value="2"> <li>BCOM</li></option>
-                <option value="3"> <li>BBA</li></option>
-                 </select>
-               </li>
-            </ul>
-        </label>
-        <li class="dropdown-submenu">
-            <a class="dropdown-item " href="#">ENGLISH<i class="fas fa-caret-right"></i></a>
-            <ul class="dropdown-menu">
-                <li>
-                <select class="custom-select mr-sm-2 course-select" id="inlineFormCustomSelect3" name="course">
-                <option  value="5"> <li>BA ENGLISH</li></option>
-                <option  value="4"> <li>MA ENGLISH</li></option>
-                 </select>
-                </li>
-            </ul>
-        </li>
-        <li class="dropdown-submenu">
-            <a class="dropdown-item " href="#">HOTEL MANAGEMENT <i class="fas fa-caret-right"></i></a>
-             <ul class="dropdown-menu">
-                 <li>
-                <select class="custom-select mr-sm-2 course-select" id="inlineFormCustomSelect4" name="course">
-                <option value="7"> <li>BSC HM</li></option>
-                <option value="10"> <li>MSC HM</li></option>
-                 </select>
-                 </li>
-            </ul>
-        </li>
-
-        <li class="dropdown-submenu">
-            <a class="dropdown-item " href="#">SOCIAL STUDIES<i class="fas fa-caret-right"></i></a>
-            <ul class="dropdown-menu">
-                <li>
-                <select class="custom-select mr-sm-2 course-select" id="inlineFormCustomSelect5" name="course">
-                <option value="8"> <li>BSC PSYCHOLOGY</li></option>
-                <option value="9"> <li>BSC SOCIOLOGY</li></option>
-                </select>
-                </li>
-            </ul>
-        </li>
-
-    </ul>
-</div>
-
-    <div class="form-group">
-        <button type="button" class="btn btn-primary"><b>Course Selected:<span id="selectedCourse" style="color:white;font-size:150%"></span></b></button>
+        <div class="form-group">
+        <select class="form-control" name="department" id="department">
+            <option selected>Choose DEPARTMENT</option>
+            <option value="1">COMPUTER SCIENCE</option>
+            <option value="2">COMMERCE</option>
+            <option value="3">ENGLISH</option>
+            <option value="4">HOTEL MANAGEMENT</option>
+            <option value="5">SOCIAL STUDIES</option>
+        </select>
     </div>
+
+        <div id="course_selection" class="form-group" style="display: none;">
+    <select class="form-control" id="course" name="course">
+        <option selected>Choose course</option>
+    </select>
+    </div>
+
+
     <div class="form-group">
         <select class="form-control" id="purpose" name="purpose">
             <option selected>Choose PURPOSE</option>
@@ -158,22 +108,37 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('department').addEventListener('change', function() {
+        var department_id = this.value;
+        var course_selection = document.getElementById('course_selection');
+        var course_select = document.getElementById('course');
 
-        var courseSelects = document.querySelectorAll('.course-select');
+         course_select.innerHTML = '<option selected disabled>Choose course</option>';
 
-        courseSelects.forEach(function(select) {
-            select.addEventListener('change', function() {
-
-                var selectedOption = select.options[select.selectedIndex];
-
-                var selectedCourse = selectedOption.textContent;
-
-                document.getElementById('selectedCourse').textContent = selectedCourse;
-            });
-        });
+        if (department_id == "1") {
+            course_selection.style.display = 'block';
+            course_select.innerHTML += '<option value="1">BCA</option>';
+            course_select.innerHTML += '<option value="2">BSC CS</option>';
+        } else if (department_id == "2") {
+            course_selection.style.display = 'block';
+            course_select.innerHTML += '<option value="3">BCOM</option>';
+            course_select.innerHTML += '<option value="4">BBA</option>';
+        } else if (department_id == "3") {
+            course_selection.style.display = 'block';
+            course_select.innerHTML += '<option value="5">BA ENGLISH</option>';
+            course_select.innerHTML += '<option value="6">MA ENGLISH</option>';
+        } else if (department_id == "4") {
+            course_selection.style.display = 'block';
+            course_select.innerHTML += '<option value="7">BCS HM</option>';
+            course_select.innerHTML += '<option value="8">MCS HM</option>';
+        } else if (department_id == "5") {
+            course_selection.style.display = 'block';
+            course_select.innerHTML += '<option value="9">BSC PSYCHOLOGY</option>';
+            course_select.innerHTML += '<option value="10">BSC SOCIOLOGY</option>';
+        } else {
+            course_selection.style.display = 'none';
+        }
     });
 </script>
-
  </body>
 </html>

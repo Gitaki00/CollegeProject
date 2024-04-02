@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'schoolproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'collegedatabase',
+        'NAME': 'collegedatabase1',
         'USER': 'root',
         'PASSWORD':'',
         'OPTIONS': {

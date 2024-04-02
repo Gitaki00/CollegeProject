@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 
-from app3.models import Course, FormData
+from app3.models import Course, FormData,Department
 
 def form(request):
     if request.method == 'POST':
@@ -12,9 +12,11 @@ def form(request):
         phno = request.POST.get('phno')
         email = request.POST.get('email')
         address = request.POST.get('address')
+        department_id=request.POST.get('department')
         course_id = request.POST.get('course')
         purpose = request.POST.get('purpose')
         materials = request.POST.getlist('material')
+        department_instance = get_object_or_404(Department, pk=department_id)
         course_instance = get_object_or_404(Course, pk=course_id)
 
         form_data = FormData(
@@ -25,6 +27,7 @@ def form(request):
             phno=phno,
             email=email,
             address=address,
+            department = department_instance,
             course=course_instance,
             purpose=purpose,
         )
